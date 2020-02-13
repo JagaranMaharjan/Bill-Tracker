@@ -1,35 +1,34 @@
 import 'package:expensestracker/controller/productController.dart';
 import 'package:flutter/material.dart';
 
-ProductController productController = new ProductController();
-final _controllerName = TextEditingController().text.toString();
-
-class AddNewProduct extends StatefulWidget {
+class AddNewTransaction extends StatefulWidget {
   @override
-  _AddNewProductState createState() => _AddNewProductState();
+  _AddNewTransactionState createState() => _AddNewTransactionState();
 }
 
-class _AddNewProductState extends State<AddNewProduct> {
-  String _title;
+class _AddNewTransactionState extends State<AddNewTransaction> {
+  ProductController productController = new ProductController();
 
+  final controllerName = TextEditingController();
+  final controllerPrice = TextEditingController();
   void submitProduct() {
-    if (_title == "productName" && _controllerName.isEmpty) {
-      String _productName1 = _controllerName;
-      if (_title == "productPrice" && _controllerName.isEmpty) {
-        double _price1 = double.parse(_controllerName);
-        //---add product
-        productController.addNewTransactionToList(
-            title: _productName1, price: _price1);
-        Navigator.pop(context);
-      } else {
-        return;
-      }
+    if (controllerName.text.isNotEmpty || controllerPrice.text.isNotEmpty) {
+      String _productName1 = controllerName.text;
+      double _price1 = double.parse(controllerPrice.text);
+      print('prod name :' + _productName1);
+      print('prod price:' + _price1.toString());
+      //---add product
+      productController.addNewTransactionToList(
+          title: _productName1, price: _price1);
+      Navigator.pop(context);
     } else {
       return;
     }
   }
 
-  Widget txtField({@required title, @required controllerName}) {
+  Widget txtField(
+      {@required String title,
+      @required TextEditingController controllerName}) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.all(5.0),
@@ -62,9 +61,11 @@ class _AddNewProductState extends State<AddNewProduct> {
     return Column(
       children: <Widget>[
         txtField(
-            title: "Enter your product name", controllerName: "productName"),
+            title: "Enter your product name", controllerName: controllerName),
         txtField(
-            title: "Enter your product price", controllerName: "productPrice"),
+          title: "Enter your product price",
+          controllerName: controllerPrice,
+        ),
         RaisedButton(
           colorBrightness: Brightness.dark,
           child: Text(

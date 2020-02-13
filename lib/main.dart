@@ -1,4 +1,5 @@
-import 'package:expensestracker/widgets/btnWidgets.dart';
+import 'package:expensestracker/widgets/newTransactionWidgets.dart';
+import 'package:expensestracker/widgets/showLatestTransaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,8 +54,27 @@ class _MainPageState extends State<MainPage> {
               side: BorderSide(
                   color: Colors.blue, width: 1, style: BorderStyle.solid),
             ),
-            child: AddNewProduct(),
-          )
+            child: AddNewTransaction(),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Card(
+            margin: EdgeInsets.all(10.0),
+            color: Colors.white,
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(5.0),
+              width: double.infinity,
+              // child: ShowTransaction(), //display transaction list
+            ),
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              side: BorderSide(
+                  color: Colors.blue, style: BorderStyle.solid, width: 1.0),
+            ),
+          ),
         ],
       ),
     );

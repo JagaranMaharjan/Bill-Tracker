@@ -1,15 +1,14 @@
 import 'package:expensestracker/controller/productController.dart';
+import 'package:expensestracker/model/proudctDetails.dart';
 
 import 'package:flutter/material.dart';
 
-class ShowTransaction extends StatefulWidget {
-  @override
-  _ShowTransactionState createState() => _ShowTransactionState();
-}
-
 ProductController productController = ProductController();
 
-class _ShowTransactionState extends State<ShowTransaction> {
+class ListTransaction extends StatelessWidget {
+  final List<ProductDetails> prods;
+  ListTransaction({this.prods});
+
   Widget viewTransactionDetails({@required String text}) {
     return Text(
       text,
@@ -25,8 +24,7 @@ class _ShowTransactionState extends State<ShowTransaction> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: productController.prod.length,
-      itemBuilder: (context, index) {
+      itemBuilder: (ctx, index) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -36,7 +34,7 @@ class _ShowTransactionState extends State<ShowTransaction> {
               width: 100,
               child: Center(
                 child: viewTransactionDetails(
-                  text: productController.prod[index].productAmount.toString(),
+                  text: prods[index].productAmount.toString(),
                 ),
               ),
               decoration: BoxDecoration(
@@ -49,16 +47,49 @@ class _ShowTransactionState extends State<ShowTransaction> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 viewTransactionDetails(
-                  text: productController.prod[index].productName.toString(),
+                  text: prods[index].productName.toString(),
                 ),
                 viewTransactionDetails(
-                  text: productController.prod[index].dateTime.toString(),
+                  text: prods[index].dateTime.toString(),
                 ),
               ],
             ),
           ],
         );
       },
+      itemCount: prods.length,
     );
   }
 }
+/*
+* Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.all(5.0),
+          padding: EdgeInsets.all(5.0),
+          width: 100,
+          child: Center(
+            child: viewTransactionDetails(
+              text: "sad",
+            ),
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            border: Border.all(
+                color: Colors.blue, width: 1, style: BorderStyle.solid),
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            viewTransactionDetails(
+              text: "mad",
+            ),
+            viewTransactionDetails(
+              text: "cat",
+            ),
+          ],
+        ),
+      ],
+    );*/

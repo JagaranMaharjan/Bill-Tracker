@@ -66,7 +66,7 @@ class _MainPageState extends State<MainPage> {
               margin: EdgeInsets.all(5.0),
               padding: EdgeInsets.all(5.0),
               width: double.infinity,
-              // child: ShowTransaction(), //display transaction list
+              child: ListTransaction(), //display transaction list
             ),
             elevation: 5,
             shape: RoundedRectangleBorder(

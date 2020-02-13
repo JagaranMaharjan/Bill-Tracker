@@ -20,7 +20,6 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
       //---add product
       productController.addNewTransactionToList(
           title: _productName1, price: _price1);
-      Navigator.pop(context);
     } else {
       return;
     }
